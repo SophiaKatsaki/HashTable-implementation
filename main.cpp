@@ -39,8 +39,6 @@ int main(){
 	char c; // Μία μεταβλητή που αποθηκεύει τον χαρακτήρα που επεξεργάζομαι
 
 	//Δημιουργώ τις δομές
-	BinarySearchTree bst;
-	AVL_Tree avl;
 	HashTable hashT;
 
 
@@ -54,9 +52,6 @@ int main(){
 			if (!processChar(c)){ // Άν δεν έχω αλφαβητικό χαρακτήρα (λατινικό) τότε έχω ολόκληρη λέξη που πρέπει να εισάγω
 				if (temp!=""){ // Η λέξη δεν είναι κενή
 					randomInsert(temp, Q, currQ); // Εισαγωγή σε Q αν χρειαστεί
-
-					bst.insertNode(temp); // Κάνω εισαγωγές
-					avl.insertNode(temp);
 					hashT.Insert(temp);
 					temp=""; // Αρχικοποιώ το temp για να εισάγω στην συνέχεια νέα λέξη
 				}
@@ -69,9 +64,6 @@ int main(){
 		}
 		if (temp!=""){ // Στο τέλος της επανάληψης (εξάντληση χαρακτήρων γραμμής), κάνω εισαγωγή την λέξη που δημιουργήθηκε στο τέλος όπου δεν υπαρχει μή αλφαβητικός χαρακτήρας (άν δεν είναι κενή)
 			randomInsert(temp, Q, currQ); // Εισαγωγή σε Q αν χρειαστεί
-
-			bst.insertNode(temp);
-			avl.insertNode(temp);
 			hashT.Insert(temp);
 		}
 
@@ -93,7 +85,7 @@ int main(){
 	long iterator, end = currQ; // Δηλώνω μετρητές επαναλήψεων
 
 	hashTOut << "HashTable Queries:\n" << std::endl;
-	start = std::chrono::steady_clock::now(); // Αρχίζω το χρονόμετρο
+	auto start = std::chrono::steady_clock::now(); // Αρχίζω το χρονόμετρο
 	for ( iterator = 0; iterator < end; iterator++ ) {
 		hashTOut << *hashT.Search( Q[iterator] ) << std::endl; // Ψάχνω την λέξη στον πίνακα
 	}
